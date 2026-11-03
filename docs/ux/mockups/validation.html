@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FundEli5 · Validation screen mockup</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="components.css">
+<!-- Mockup of docs/ux/README.md "Rule Card validation screen". States: #queue #draft #validated. Example data is the seed's Nordea 1 card. -->
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wordmark"><span class="logo">F5</span>FundEli5</div>
+  <nav class="nav">
+    <a href="dealer.html#answered">Answer requests</a>
+    <a class="active" href="#queue">Validate Rule Cards <span class="count">1</span></a>
+  </nav>
+  <div class="role">Rule Card Validator · J. Keller <span class="avatar">JK</span></div>
+</header>
+
+<main class="page">
+
+  <!-- ================= QUEUE ================= -->
+  <section data-state="queue">
+    <div class="page-head">
+      <div><h1>Rule Cards</h1><div class="sub">A Draft card decides nothing until you validate it: its Share Classes give Needs Review.</div></div>
+    </div>
+    <div class="card">
+      <table class="table">
+        <thead><tr><th>Fund</th><th>Share Classes</th><th>Version</th><th>Drafted from</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><b>Nordea 1 – Global Climate and Environment</b><div class="xs muted">LU UCITS</div></td><td>BP-EUR, BI-EUR</td><td>Draft v1</td><td class="small">Prospectus (25 of 944 pages), 2 KIDs · 1 Nov</td><td><span class="chip review"><span class="ic">!</span>2 contradictions</span></td><td><a class="btn btn-primary" href="#draft">Review</a></td></tr>
+          <tr><td><b>BNP Paribas (CH) Fund – Bonds CHF</b><div class="xs muted">CH</div></td><td>A, A AC</td><td>v1</td><td class="small">Prospectus, 2 KIDs · 30 Oct</td><td><span class="chip eligible"><span class="ic">✓</span>Validated 31 Oct by J. Keller</span></td><td><a class="btn">Open</a></td></tr>
+          <tr><td><b>Nordea SIF – Global Private Equity</b><div class="xs muted">LU SIF</div></td><td>BW-SEK</td><td>v1</td><td class="small">Prospectus, KID · 30 Oct</td><td><span class="chip eligible"><span class="ic">✓</span>Validated 31 Oct by J. Keller</span></td><td><a class="btn">Open</a></td></tr>
+          <tr><td><b>Swiss Life iFunds (CH)</b><div class="xs muted">CH</div></td><td>3 classes</td><td>v1</td><td class="small">Fund contract · 30 Oct</td><td><span class="chip eligible"><span class="ic">✓</span>Validated 31 Oct by J. Keller</span></td><td><a class="btn">Open</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= CARD HEADER ================= -->
+  <section data-state="draft validated" class="card card-header">
+    <div>
+      <div class="xs muted"><a class="link" href="#queue">Rule Cards</a> / Nordea 1</div>
+      <h1>Nordea 1 – Global Climate and Environment</h1>
+      <div class="facts">
+        <span><b style="color:var(--ink-900)">BP-EUR</b> LU0348926287</span>
+        <span><b style="color:var(--ink-900)">BI-EUR</b> LU0348927095</span>
+        <span>Draft v1 · drafted 1 Nov 2026, 14:10</span>
+        <span>from the prospectus (25 of 944 pages) and 2 KIDs</span>
+        <span class="verified">✓ all 21 quotes found on their page</span>
+      </div>
+    </div>
+    <div class="progress" data-state="draft">
+      <div class="small"><b>9</b> of 14 rules reviewed</div>
+      <div class="bar"><span style="width: 64%"></span></div>
+      <button class="btn btn-primary" disabled>Validate card</button>
+      <div class="xs muted">5 rules and 2 contradictions left</div>
+    </div>
+    <div class="progress" data-state="validated">
+      <span class="chip eligible"><span class="ic">✓</span>Validated v1</span>
+      <div class="xs muted">by J. Keller, 3 Nov 2026, 11:24 · in force for Eligibility Checks</div>
+    </div>
+  </section>
+
+  <div data-state="draft" class="banner warning" style="margin-top: var(--space-4)">
+    <span class="bi">!</span>
+    <div>
+      <h3>2 contradictions need a decision: <a class="link">Investor category</a>, <a class="link">Target Market · client type</a></h3>
+      <p>The prospectus says BI-EUR is for institutional investors only; the BI-EUR KID says it suits all investors. Pick the source that governs.</p>
+    </div>
+  </div>
+  <div data-state="draft" class="banner warning" style="margin-top: var(--space-3); background: var(--surface); border-color: var(--line)">
+    <span class="bi" style="background: var(--ink-500)">?</span>
+    <div>
+      <h3>Possibly missed: no Mandate-only rule found for BP-EUR</h3>
+      <p>Pages 6–122 and 149–944 of the prospectus were not read. Add the rule or confirm there is none; until then BP-EUR gives Needs Review. <a class="link">Open the unread pages</a></p>
+    </div>
+  </div>
+  <div data-state="validated" class="banner success" style="margin-top: var(--space-4)">
+    <span class="bi">✓</span>
+    <div><h3>Card validated: Eligibility Checks on BP-EUR and BI-EUR now use v1</h3><p>14 rules: 11 accepted, 2 corrected, 1 added. Contradictions settled: followed the prospectus twice.</p></div>
+  </div>
+
+  <!-- ================= THREE COLUMNS ================= -->
+  <section data-state="draft validated" class="three" style="margin-top: var(--space-5)">
+    <!-- Rule list -->
+    <div class="card rules">
+      <div class="rule-group eyebrow">All classes</div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">US Person</div><div class="v">Excluded, Reg S definition</div></div><span class="scope">p.3, p.5</span></div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">Other restriction</div><div class="v">Board may reject an application · Noted</div></div><span class="scope">p.138</span></div>
+      <div class="rule-item"><span class="st open"></span><div><div class="k">Other restriction</div><div class="v">Class may be closed to new money</div></div><span class="scope">p.138</span></div>
+
+      <div class="rule-group eyebrow">BI-EUR</div>
+      <div class="rule-item sel"><span class="st bang">!</span><div><div class="k">Investor category</div><div class="v">Institutional only</div></div><span class="scope">p.123 · KID</span></div>
+      <div class="rule-item"><span class="st fixed">✎</span><div><div class="k">Minimum subscription</div><div class="v">EUR 75,000 · corrected</div></div><span class="scope">p.123</span></div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">Mandate-only class</div><div class="v">No</div></div><span class="scope">p.123</span></div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">KID for retail</div><div class="v">KID published</div></div><span class="scope">KID p.1</span></div>
+      <div class="rule-item"><span class="st bang">!</span><div><div class="k">Target Market</div><div class="v">Client type: all · 5 dimensions</div></div><span class="scope">KID p.1</span></div>
+
+      <div class="rule-group eyebrow">BP-EUR</div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">Investor category</div><div class="v">All investors</div></div><span class="scope">p.123</span></div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">Minimum subscription</div><div class="v">None</div></div><span class="scope">p.123</span></div>
+      <div class="rule-item"><span class="st open"></span><div><div class="k">Mandate-only class</div><div class="v">Possibly missed</div></div><span class="scope">—</span></div>
+      <div class="rule-item"><span class="st ok">✓</span><div><div class="k">KID for retail</div><div class="v">KID published</div></div><span class="scope">KID p.1</span></div>
+      <div class="rule-item"><span class="st open"></span><div><div class="k">Target Market</div><div class="v">Retail · risk 4 · 5 years · 5 dimensions</div></div><span class="scope">KID p.1</span></div>
+    </div>
+
+    <!-- Document -->
+    <div>
+      <div class="tabs">
+        <button class="tab on">Prospectus · p.123</button>
+        <button class="tab">Prospectus · p.5</button>
+        <button class="tab">BI-EUR KID · p.1</button>
+      </div>
+      <div class="card doc-page">
+        <div class="running"><span>Nordea 1, SICAV · Prospectus · June 2026</span><span>page 123 of 944</span></div>
+        <h4>Share classes</h4>
+        <p>The SICAV may issue shares of the following classes in each fund. The classes differ in the investors they may be offered to, the minimum initial investment and the fees charged.</p>
+        <p><b>P</b> All investors. No minimum initial investment.</p>
+        <p><mark>I Institutional investors.</mark> Minimum initial investment: <mark>EUR 75,000 or equivalent in other currencies</mark>, waived for funds of the Nordea group.</p>
+        <p><b>X</b> Institutional investors that have a specific agreement with the management company.</p>
+        <p>Shares of class I may only be acquired by institutional investors within the meaning of article 174 of the 2010 Law. The board may refuse an application for class I shares where the applicant cannot demonstrate its status.</p>
+        <p class="muted">Classes are available in the reference currency of the fund and in the currencies shown in the table of each fund.</p>
+      </div>
+    </div>
+
+    <!-- Decision -->
+    <div class="card card-pad stack" style="gap: var(--space-4)" data-state="draft">
+      <div>
+        <div class="eyebrow">Investor category · BI-EUR</div>
+        <div style="font-size: var(--text-lg); font-weight: 600; margin-top: 4px">Institutional only</div>
+      </div>
+      <p class="small" style="margin:0; color: var(--ink-700)">The prospectus restricts class I to institutional investors under art. 174 of the 2010 Law, which includes professionals investing for retail clients under a discretionary mandate. The BI-EUR KID says the fund suits all investors.</p>
+      <div class="signals">
+        <div class="signal good"><span class="s">✓</span>Quote found on prospectus p.123</div>
+        <div class="signal good"><span class="s">✓</span>Definition found on prospectus p.5</div>
+        <div class="signal warn"><span class="s">!</span>Contradicts the BI-EUR KID p.1: “suitable for all types of investors”</div>
+      </div>
+      <div class="divider"></div>
+      <div class="field"><label>Which source governs?</label></div>
+      <label class="choice on"><input type="radio" name="g" checked><div><b>Follow the prospectus</b><div class="xs muted">Institutional only (art. 174). The KID's wording is about distribution, not eligibility.</div></div></label>
+      <label class="choice"><input type="radio" name="g"><div><b>Follow the KID</b><div class="xs muted">All investors</div></div></label>
+      <div class="field"><label>Who may invest</label><select class="input"><option>Institutional investors</option></select></div>
+      <div style="display:flex; gap: var(--space-2)">
+        <button class="btn btn-primary">Accept and next</button>
+        <button class="btn">Save correction</button>
+      </div>
+      <div class="xs muted">Then: Target Market · client type (contradiction)</div>
+    </div>
+    <div class="card card-pad stack" style="gap: var(--space-3)" data-state="validated">
+      <div class="eyebrow">Version history</div>
+      <div class="small"><b>v1</b> · validated 3 Nov 2026, 11:24 by J. Keller<div class="xs muted">from Draft v1 of 1 Nov · 2 corrections · 2 contradictions settled</div></div>
+      <div class="divider"></div>
+      <div class="small muted">A new prospectus edition gives Draft v2. v1 stays in force until v2 is validated.</div>
+      <button class="btn">Export card (JSON)</button>
+    </div>
+  </section>
+</main>
+
+<nav class="mock-switch" aria-label="Mockup states">
+  <a href="#queue">Queue</a><a href="#draft">Draft card</a><a href="#validated">Validated</a>
+</nav>
+<script>
+  function show() {
+    const s = (location.hash || '#draft').slice(1);
+    document.querySelectorAll('[data-state]').forEach(el => {
+      el.style.display = el.dataset.state.split(' ').includes(s) ? '' : 'none';
+    });
+    document.querySelectorAll('.rule-item .st').forEach(st => {
+      if (!st.dataset.orig) st.dataset.orig = st.className + '|' + st.textContent;
+      const [cls, txt] = st.dataset.orig.split('|');
+      const done = s === 'validated' && !cls.includes('fixed');
+      st.className = done ? 'st ok' : cls; st.textContent = done ? '✓' : txt;
+    });
+    document.querySelectorAll('.mock-switch a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + s));
+  }
+  addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>

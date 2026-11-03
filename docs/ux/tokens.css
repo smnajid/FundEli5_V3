@@ -1,0 +1,127 @@
+/*
+ * FundEli5 design tokens. Copy this file into frontend/src/styles.css in the skeleton (spine S1).
+ * Components use these variables only: no raw colour, font size, spacing or radius anywhere else.
+ * Rationale and usage: docs/ux/design-system.md
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  /* Brand */
+  --brand-900: #0f2440;
+  --brand-800: #163257;
+  --brand-700: #1f4373;
+  --brand-600: #2b5a95;
+  --brand-100: #e6eef8;
+  --brand-50: #f3f7fc;
+
+  /* Neutrals */
+  --ink-900: #111827;   /* body text */
+  --ink-700: #374151;   /* secondary text */
+  --ink-500: #6b7280;   /* muted, metadata */
+  --ink-400: #9ca3af;   /* placeholders, disabled */
+  --line: #e5e7eb;      /* borders */
+  --line-strong: #d1d5db;
+  --surface: #ffffff;   /* cards */
+  --ground: #f4f6f9;    /* page background */
+  --sunken: #f9fafb;    /* inset areas: quotes, code */
+
+  /* Verdicts: the only saturated colours on screen */
+  --eligible-700: #166534;
+  --eligible-600: #15803d;
+  --eligible-100: #dcfce7;
+  --eligible-50: #f0fdf4;
+  --not-eligible-700: #991b1b;
+  --not-eligible-600: #dc2626;
+  --not-eligible-100: #fee2e2;
+  --not-eligible-50: #fef2f2;
+  --review-700: #92400e;
+  --review-600: #d97706;
+  --review-100: #fef3c7;
+  --review-50: #fffbeb;
+
+  /* AI: everything an LLM wrote carries this colour */
+  --ai-700: #5b21b6;
+  --ai-600: #7c3aed;
+  --ai-100: #ede9fe;
+  --ai-50: #f5f3ff;
+
+  /* Evidence: a quoted passage */
+  --quote-bg: #fef9c3;
+  --quote-line: #eab308;
+
+  /* Type */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --text-xs: 12px;   /* labels, metadata */
+  --text-sm: 13px;   /* secondary */
+  --text-md: 15px;   /* body */
+  --text-lg: 17px;   /* Verdict lines, card titles */
+  --text-xl: 20px;   /* screen title */
+  --text-2xl: 24px;
+  --leading: 1.55;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Space: 4px scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-raised: 0 4px 12px rgba(16, 24, 40, 0.08), 0 2px 4px rgba(16, 24, 40, 0.04);
+  --shadow-drawer: -12px 0 32px rgba(16, 24, 40, 0.14);
+
+  /* Layout */
+  --topbar-height: 56px;
+  --page-max: 1320px;
+  --rail-width: 380px;
+  --focus-ring: 0 0 0 3px rgba(43, 90, 149, 0.35);
+  --motion: 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink-900);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading);
+  -webkit-font-smoothing: antialiased;
+}
+
+code,
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0ms;
+  }
+}

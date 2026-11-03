@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FundEli5 · Dealer screen mockup</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="components.css">
+<!-- Mockup of docs/ux/README.md "Dealer screen". States: #paste #working #answered #review #refused #record. Example data is the seed cast. -->
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wordmark"><span class="logo">F5</span>FundEli5</div>
+  <nav class="nav">
+    <a class="active" href="#answered">Answer requests</a>
+    <a href="validation.html#draft">Validate Rule Cards <span class="count">1</span></a>
+  </nav>
+  <div class="role">Fund Dealer <span class="avatar">PM</span></div>
+</header>
+
+<main class="page">
+
+  <!-- ================= PASTE (empty state) ================= -->
+  <section data-state="paste">
+    <div class="page-head">
+      <div>
+        <h1>Answer a subscription request</h1>
+        <div class="sub">Paste the Requester's email. FundEli5 checks every portfolio and Share Class it names and drafts a cited reply.</div>
+      </div>
+    </div>
+    <div class="card paste">
+      <div class="field">
+        <label for="email">Requester's email</label>
+        <textarea id="email" class="input" placeholder="Paste the email here, or drop an .eml file">From: Marc Aebi (relationship manager)
+To: Fund dealing desk
+Subject: Subscription Nordea Global Climate - LOC90000101, LOC90000102
+
+Hi desk,
+The client would like to put EUR 80,000 into the Nordea Global Climate fund, institutional class,
+from portfolios LOC90000101 and LOC90000102. Can you confirm they can subscribe?
+Thanks, Marc</textarea>
+      </div>
+      <div class="paste-actions">
+        <button class="btn btn-primary btn-lg">Answer it <span class="kbd">⌘ ↵</span></button>
+        <span class="small muted">Client names never leave the bank: only Portfolio Ids reach the AI.</span>
+        <div class="samples"><span class="xs muted">Demo emails:</span>
+          <button class="btn">Two portfolios</button><button class="btn">French, no class</button><button class="btn">Names the client</button>
+        </div>
+      </div>
+    </div>
+    <div class="card card-pad" style="margin-top: var(--space-5); display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-6);">
+      <div><div class="eyebrow">1 · Privacy Gate</div><p class="small" style="margin:6px 0 0">Portfolio References become Portfolio Ids. An email naming a client gets no AI at all.</p></div>
+      <div><div class="eyebrow">2 · Rule Engine</div><p class="small" style="margin:6px 0 0">Validated Rule Cards decide every Verdict. No AI takes part in the decision.</p></div>
+      <div><div class="eyebrow">3 · Reply</div><p class="small" style="margin:6px 0 0">The AI drafts the reply. Each claim in it cites the fund document it comes from.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= WORKING (progress) ================= -->
+  <section data-state="working">
+    <div class="card request">
+      <div class="grow"><div class="from">Request from Marc Aebi</div><div class="subject">Subscription Nordea Global Climate - LOC90000101, LOC90000102</div></div>
+    </div>
+    <div class="with-rail" style="margin-top: var(--space-4)">
+      <div class="card">
+        <div class="steps">
+          <div class="step done"><span class="dot">✓</span><div><b>Privacy Gate</b> <span class="note">2 Portfolio References swapped for Portfolio Ids, no client name found</span></div></div>
+          <div class="step done"><span class="dot">✓</span><div><b>Reading the request</b> <span class="note">2 Subscription Requests: Nordea 1 Global Climate BI-EUR, EUR 80,000</span></div></div>
+          <div class="step now"><span class="dot"></span><div><b>Checking the rules</b> <span class="note">Rule Card v1, validated 2 Nov by J. Keller</span></div></div>
+          <div class="step todo"><span class="dot"></span><div>Drafting the reply</div></div>
+        </div>
+        <div style="padding: 0 var(--space-6) var(--space-6); display:flex; flex-direction:column; gap:10px">
+          <div class="skeleton" style="width:70%"></div><div class="skeleton" style="width:55%"></div><div class="skeleton" style="width:62%"></div>
+        </div>
+      </div>
+      <div class="rail"><div class="card card-pad"><div class="skeleton" style="width:50%"></div><div class="skeleton" style="width:90%; margin-top:10px"></div><div class="skeleton" style="width:80%; margin-top:10px"></div></div></div>
+    </div>
+  </section>
+
+  <!-- ================= REQUEST SUMMARY (answered / review / record) ================= -->
+  <section data-state="answered record" class="stack">
+    <div class="card request">
+      <div class="grow">
+        <div class="from">Request from Marc Aebi <span class="muted small" style="font-weight:400">· today 09:42</span></div>
+        <div class="subject">Subscription Nordea Global Climate - LOC90000101, LOC90000102</div>
+      </div>
+      <div class="gate"><span class="chip safe">🛡 The AI saw Portfolio Ids only</span>
+        <span class="swap">LOC90000101 → 3f6c…a4c3</span><span class="swap">LOC90000102 → 9b2d…6b19</span></div>
+      <a class="link small">Show email and parsed requests</a>
+    </div>
+
+    <div class="summary">
+      <span class="total">3 checks</span>
+      <span class="chip eligible"><span class="ic">✓</span>2 can buy</span>
+      <span class="chip not-eligible"><span class="ic">✕</span>1 cannot buy</span>
+    </div>
+  </section>
+
+  <section data-state="review" class="stack">
+    <div class="card request">
+      <div class="grow">
+        <div class="from">Request from Sophie Lentz <span class="muted small" style="font-weight:400">· today 10:05 · French</span></div>
+        <div class="subject">Souscription Nordea Global Climate - LUX90000301</div>
+      </div>
+      <div class="gate"><span class="chip safe">🛡 The AI saw Portfolio Ids only</span><span class="swap">LUX90000301 → c71e…2f64</span></div>
+      <a class="link small">Show email and parsed requests</a>
+    </div>
+    <div class="summary">
+      <span class="total">2 checks · no Share Class named, so every class of the fund is checked</span>
+      <span class="chip review"><span class="ic">!</span>1 needs review</span>
+      <span class="chip not-eligible"><span class="ic">✕</span>1 cannot buy</span>
+    </div>
+  </section>
+
+  <!-- ================= ANSWERED: Verdicts, reply, evidence ================= -->
+  <section data-state="answered record" class="with-rail" style="margin-top: var(--space-4)">
+    <div class="stack">
+      <article class="card verdict not-eligible">
+        <span class="chip not-eligible"><span class="ic">✕</span>Not eligible</span>
+        <div>
+          <div class="headline"><span class="portfolio">LOC90000101</span> <b>cannot buy</b> Nordea 1 Global Climate BI-EUR</div>
+          <div class="why">BI-EUR is for institutional investors <a class="cite">1</a>. This advisory portfolio is a retail client.</div>
+          <div class="meta"><span>LU0348927095</span><span>EUR 80,000</span><span>7 rules checked · 1 failed</span></div>
+        </div>
+        <a class="link small">Why?</a>
+      </article>
+      <article class="card verdict eligible">
+        <span class="chip eligible"><span class="ic">✓</span>Eligible</span>
+        <div>
+          <div class="headline"><span class="portfolio">LOC90000102</span> <b>can buy</b> Nordea 1 Global Climate BI-EUR</div>
+          <div class="why">A discretionary mandate counts as an institutional investor <a class="cite">3</a>, and EUR 80,000 meets the EUR 75,000 minimum <a class="cite">4</a>.</div>
+          <div class="meta"><span>LU0348927095</span><span>EUR 80,000</span><span>7 rules checked · all passed</span></div>
+        </div>
+        <a class="link small">Why?</a>
+      </article>
+      <article class="card verdict eligible">
+        <span class="chip eligible"><span class="ic">✓</span>Eligible</span>
+        <div>
+          <div class="headline"><span class="portfolio">LOC90000101</span> <b>can buy</b> Nordea 1 Global Climate BP-EUR <span class="alt-tag">alternative</span></div>
+          <div class="why">BP-EUR is the retail class of the same fund, open to all investors <a class="cite">2</a>.</div>
+          <div class="meta"><span>LU0348926287</span><span>EUR 80,000</span><span>7 rules checked · all passed</span></div>
+        </div>
+        <a class="link small">Why?</a>
+      </article>
+
+      <article class="card reply">
+        <div class="card-head">
+          <span class="ai-label">✦ Drafted by AI · edit before sending</span>
+          <div style="display:flex; gap: var(--space-2); align-items:center">
+            <span class="chip neutral">English</span>
+            <button class="btn btn-primary">Copy reply</button>
+          </div>
+        </div>
+        <div class="reply-body" contenteditable="true">
+          <p>Hi Marc,</p>
+          <p><span class="portfolio">LOC90000101</span> cannot subscribe to Nordea 1 Global Climate BI-EUR: the class is reserved for institutional investors <a class="cite on">1</a>, and this is an advisory portfolio. The retail class BP-EUR (LU0348926287) is open to all investors <a class="cite">2</a>, and the EUR 80,000 subscription is eligible there.</p>
+          <p><span class="portfolio">LOC90000102</span> can subscribe to BI-EUR. The discretionary mandate makes it an institutional investor <a class="cite">3</a>, and EUR 80,000 meets the EUR 75,000 minimum <a class="cite">4</a>.</p>
+          <p>Best regards,<br>Fund dealing desk</p>
+        </div>
+        <div class="reply-foot"><span>Portfolio Ids swapped back to your references locally.</span><a class="link" href="#record">What the AI saw</a></div>
+      </article>
+
+      <details class="card fold">
+        <summary>Full Justification <span class="muted small" style="font-weight:400">· every rule of every check, with its source</span></summary>
+      </details>
+    </div>
+
+    <aside class="rail">
+      <div class="eyebrow">Evidence for the reply</div>
+      <div class="card evidence on">
+        <a class="cite on num">1</a>
+        <div class="rule">Investor category <span class="outcome fail">FAIL</span> <span class="muted" style="font-weight:400">BI-EUR</span></div>
+        <div class="quote"><mark>I Institutional investors.</mark></div>
+        <div class="source">Nordea 1 prospectus · p.123 <span class="verified">✓ quote found on page</span></div>
+      </div>
+      <div class="card evidence">
+        <a class="cite num">2</a>
+        <div class="rule">Investor category <span class="outcome pass">PASS</span> <span class="muted" style="font-weight:400">BP-EUR</span></div>
+        <div class="quote"><mark>P All investors.</mark></div>
+        <div class="source">Nordea 1 prospectus · p.123 <span class="verified">✓ quote found on page</span></div>
+      </div>
+      <div class="card evidence">
+        <a class="cite num">3</a>
+        <div class="rule">Investor category <span class="outcome pass">PASS</span> <span class="muted" style="font-weight:400">BI-EUR</span></div>
+        <div class="quote">… <mark>financial professionals investing on behalf of … retail clients in connection with a discretionary management agreement</mark></div>
+        <div class="source">Nordea 1 prospectus · p.5 <span class="verified">✓ quote found on page</span></div>
+      </div>
+      <div class="card evidence">
+        <a class="cite num">4</a>
+        <div class="rule">Minimum subscription <span class="outcome pass">PASS</span> <span class="muted" style="font-weight:400">BI-EUR</span></div>
+        <div class="quote"><mark>EUR 75,000 or equivalent in other currencies</mark></div>
+        <div class="source">Nordea 1 prospectus · p.123 <span class="verified">✓ quote found on page</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ================= REVIEW: Needs Review with Advisory Suggestions ================= -->
+  <section data-state="review" class="with-rail" style="margin-top: var(--space-4)">
+    <div class="stack">
+      <article class="card verdict review">
+        <span class="chip review"><span class="ic">!</span>Needs review</span>
+        <div>
+          <div class="headline"><span class="portfolio">LUX90000301</span> <b>needs review for</b> Nordea 1 Global Climate BP-EUR</div>
+          <div class="why">In Luxembourg the Target Market applies, and this client is outside it on three points: risk 4 of 7 for an Income profile, a 5-year holding period for a 2-year horizon, and a possible total loss <a class="cite">1</a>.</div>
+          <div class="meta"><span>LU0348926287</span><span>EUR 20,000</span><span>7 rules checked · 1 to review</span></div>
+        </div>
+        <a class="link small">Why?</a>
+      </article>
+      <article class="card verdict not-eligible">
+        <span class="chip not-eligible"><span class="ic">✕</span>Not eligible</span>
+        <div>
+          <div class="headline"><span class="portfolio">LUX90000301</span> <b>cannot buy</b> Nordea 1 Global Climate BI-EUR</div>
+          <div class="why">BI-EUR is for institutional investors <a class="cite">2</a>, and EUR 20,000 is below its EUR 75,000 minimum <a class="cite">3</a>.</div>
+          <div class="meta"><span>LU0348927095</span><span>EUR 20,000</span><span>7 rules checked · 2 failed</span></div>
+        </div>
+        <a class="link small">Why?</a>
+      </article>
+
+      <div class="banner ai" style="display:block">
+        <div style="display:flex; justify-content:space-between; align-items:center">
+          <span class="ai-label">✦ AI suggestions for the review</span>
+          <span class="xs muted">They never change a Verdict. Accepted questions go into the reply.</span>
+        </div>
+        <div class="group-title">Ask the Requester</div>
+        <div class="suggestion accepted">
+          <div class="q">Is the risk profile current?</div>
+          <div class="acts"><span class="chip eligible">Accepted</span><button class="btn btn-ghost">Undo</button></div>
+          <div class="d">The profile (2 Income) is one notch below the fund's risk 4. If it was last reviewed more than 12 months ago, the adviser should re-run the questionnaire.</div>
+        </div>
+        <div class="suggestion">
+          <div class="q">Does the 2-year horizon apply to the portfolio or to this investment?</div>
+          <div class="acts"><button class="btn">Accept</button><button class="btn btn-ghost">Dismiss</button></div>
+          <div class="d">The fund recommends holding for 5 years.</div>
+        </div>
+        <div class="group-title">Dealer to-do · internal, never in the reply</div>
+        <div class="suggestion">
+          <div class="q">File the acknowledgement if she proceeds</div>
+          <div class="acts"><button class="btn">Accept</button><button class="btn btn-ghost">Dismiss</button></div>
+          <div class="d">A written acknowledgement that the investment is outside her Target Market, with the adviser's rationale, attached to this Check Record.</div>
+        </div>
+      </div>
+
+      <article class="card reply">
+        <div class="card-head"><span class="ai-label">✦ Reply</span><span class="chip neutral">French</span></div>
+        <div class="reply-body" style="min-height:0">
+          <p class="muted">Decide on the suggestions first: the questions you accept are asked in the reply, in French.</p>
+          <div style="display:flex; align-items:center; gap: var(--space-3)">
+            <button class="btn btn-primary">Draft reply</button>
+            <span class="small" style="color: var(--review-700)">2 suggestions undecided: they will be left out.</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    <aside class="rail">
+      <div class="eyebrow">Evidence</div>
+      <div class="card evidence">
+        <a class="cite num">1</a>
+        <div class="rule">Target Market <span class="outcome review">REVIEW</span> <span class="muted" style="font-weight:400">BP-EUR</span></div>
+        <div class="quote"><mark>you could lose some or all of your investment</mark></div>
+        <div class="source">Nordea 1 BP-EUR KID · p.1 <span class="verified">✓ quote found on page</span></div>
+      </div>
+      <div class="card evidence">
+        <a class="cite num">2</a>
+        <div class="rule">Investor category <span class="outcome fail">FAIL</span> <span class="muted" style="font-weight:400">BI-EUR</span></div>
+        <div class="quote"><mark>I Institutional investors.</mark></div>
+        <div class="source">Nordea 1 prospectus · p.123 <span class="verified">✓ quote found on page</span></div>
+      </div>
+      <div class="card evidence">
+        <a class="cite num">3</a>
+        <div class="rule">Minimum subscription <span class="outcome fail">FAIL</span> <span class="muted" style="font-weight:400">BI-EUR</span></div>
+        <div class="quote"><mark>EUR 75,000 or equivalent in other currencies</mark></div>
+        <div class="source">Nordea 1 prospectus · p.123 <span class="verified">✓ quote found on page</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ================= REFUSED: Privacy Gate ================= -->
+  <section data-state="refused" class="stack">
+    <div class="banner danger">
+      <span class="bi">✕</span>
+      <div>
+        <h3>No AI was used for this email</h3>
+        <p>The Privacy Gate found a client name, <b>“Anna Steinmann”</b>, in the subject and line 1. Requesters send Portfolio References only, so nothing was sent to the AI.</p>
+        <p class="xs" style="margin-top:6px">Enter the request below. The check runs as usual, because the Rule Engine needs no AI, and a template reply replaces the drafted one.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2 class="card-title">Enter the Subscription Request by hand</h2><a class="link small">+ Add a portfolio</a></div>
+      <div class="card-pad">
+        <div class="form-row">
+          <div class="field"><label>Portfolio Reference · found in the email</label><input class="input" value="LOC90000101"></div>
+          <div class="field"><label>Share Class</label><select class="input"><option>Nordea 1 Global Climate BP-EUR · LU0348926287</option></select></div>
+          <div class="field"><label>Amount</label><input class="input" value="80,000"></div>
+          <div class="field"><label>Currency</label><select class="input"><option>EUR</option></select></div>
+          <button class="btn btn-primary" style="height:38px">Check</button>
+        </div>
+        <label class="small" style="display:flex; gap:8px; align-items:center; margin-top: var(--space-3)"><input type="checkbox"> Client initiated (reverse solicitation)</label>
+      </div>
+    </div>
+    <details class="card fold"><summary>The email as received</summary></details>
+  </section>
+</main>
+
+<!-- ================= RECORD drawer ================= -->
+<div data-state="record" class="scrim"></div>
+<aside data-state="record" class="drawer" aria-label="What the AI saw">
+  <div class="drawer-head">
+    <div><div class="eyebrow">Check Record · append-only</div><div style="font-weight:600">What the AI saw</div></div>
+    <a class="btn btn-ghost" href="#answered">Close</a>
+  </div>
+  <div class="drawer-body">
+    <table class="table">
+      <thead><tr><th>Check</th><th>Rule Card</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td><span class="portfolio">LOC90000101</span> × BI-EUR</td><td>v1 · validated 2 Nov by J. Keller</td><td><span class="chip not-eligible">Not eligible</span></td></tr>
+        <tr><td><span class="portfolio">LOC90000102</span> × BI-EUR</td><td>v1 · validated 2 Nov by J. Keller</td><td><span class="chip eligible">Eligible</span></td></tr>
+        <tr><td><span class="portfolio">LOC90000101</span> × BP-EUR</td><td>v1 · validated 2 Nov by J. Keller</td><td><span class="chip eligible">Eligible</span></td></tr>
+      </tbody>
+    </table>
+    <div class="small muted">Engine 0.1.0 · Scale Mapping v1 · Client Profile fields read: classification, mandate type, residence, nationalities, US Person flags (kept in the bank, never sent).</div>
+
+    <div class="llm-call">
+      <header><b>Request Parser</b><span class="xs muted">claude-sonnet-5-5 · Azure Foundry · 1.2 s</span></header>
+      <div class="body">
+        <div class="small">Client fields sent: <i>none</i></div>
+        <pre class="prompt">Subject: Subscription Nordea Global Climate - <span class="pid">3f6c2a1e…a4c3</span>, <span class="pid">9b2d71c0…6b19</span>
+
+The client would like to put EUR 80,000 into the Nordea Global Climate fund, institutional class,
+from portfolios <span class="pid">3f6c2a1e…a4c3</span> and <span class="pid">9b2d71c0…6b19</span>.</pre>
+      </div>
+    </div>
+    <div class="llm-call">
+      <header><b>Reply Drafter</b><span class="xs muted">claude-sonnet-5-5 · Azure Foundry · 3.4 s</span></header>
+      <div class="body">
+        <div class="small">Client fields sent: <span class="field-tag">Portfolio Id</span> <span class="field-tag">Verdict</span> <span class="field-tag">Justification + Citations</span></div>
+        <pre class="prompt">Verdicts for GCE-BI (Not Eligible, Eligible) and GCE-BP (Eligible, alternative). Language: en.</pre>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div data-state="answered" class="toast" style="display:none" id="toast">Reply copied</div>
+
+<nav class="mock-switch" aria-label="Mockup states">
+  <a href="#paste">Paste</a><a href="#working">Working</a><a href="#answered">Answered</a><a href="#review">Needs review</a><a href="#refused">Privacy Gate</a><a href="#record">Check Record</a>
+</nav>
+<script>
+  function show() {
+    const s = (location.hash || '#paste').slice(1);
+    document.querySelectorAll('[data-state]').forEach(el => {
+      const on = el.dataset.state.split(' ').includes(s) && el.id !== 'toast';
+      el.style.display = on ? '' : 'none';
+    });
+    document.querySelectorAll('.mock-switch a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + s));
+  }
+  addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
