@@ -10,6 +10,8 @@ This is the starting repo for the hackathon. It holds **decisions, no code**: th
 2. **Open the screens** in a browser: [dealer](docs/ux/mockups/dealer.html), [validation](docs/ux/mockups/validation.html). Use the switcher in the bottom-left corner.
 3. **Do the team's first three tasks**: [docs/tasks/](docs/tasks/README.md).
 
+To read these documents without hunting for files, open `docs/atlas/index.html` in a browser: every page here in one searchable page, with its links and backlinks resolved and both mockups embedded ([how it works](docs/atlas/README.md)).
+
 | # | Task | Time |
 |---|---|---|
 | 1 | [Chart the map](docs/tasks/01-chart-the-map.md): `/wayfinder` with the whole team | 60 min |
@@ -34,4 +36,5 @@ While the team runs tasks 2 and 3, the builder starts the platform spine ([build
 | `docs/research/` | Sample funds, LLM rule extraction, Claude on Azure Foundry |
 | `fund-documents/` | Public prospectuses and KIDs of the four seed funds |
 | `specs/` | Empty: the team's executable specification goes here ([specs/README.md](specs/README.md)) |
+| `docs/atlas/` | All of the above as one offline HTML page, generated from the files, with a link check ([README](docs/atlas/README.md)) |
 | `.claude/` | Settings and plugins, the gate agents, the skills the tasks use |
